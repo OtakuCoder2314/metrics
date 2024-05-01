@@ -95,7 +95,7 @@ export default async function ({ login, imports, data, q, account }, { enabled =
           // Apple music
           case 'apple': {
             // Parse tracklist
-            await frame.waitForFunction(() => !!document.querySelector('embed-root').shadowRoot.querySelector('.audio-tracklist'))
+            await frame.waitForFunction(() => Boolean(document.querySelector('embed-root').shadowRoot.querySelector('.audio-tracklist')))
             // Apple music do a lot of lazy-loading preventing the use of networkIdle
             await new Promise(solve => setTimeout(solve, 10 * 1000))
             tracks = [
@@ -249,7 +249,7 @@ export default async function ({ login, imports, data, q, account }, { enabled =
             // Prepare credentials
             const date = new Date().getTime()
             const [, cookie] = token.split('; ').find(part => part.startsWith('SAPISID=')).split('=')
-            const sha1 = str => crypto.createHash('sha1').update(str).digest('hex')
+            const sha1 = str => crypto.createHash("sha256").update(str).digest('hex')
             const SAPISIDHASH = `SAPISIDHASH ${date}_${sha1(`${date} ${cookie} https://music.youtube.com`)}`
             // API call and parse tracklist
             try {

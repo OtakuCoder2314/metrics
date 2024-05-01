@@ -62,7 +62,7 @@ export default async function ({ login, q, imports, data, account }, { token, en
             try {
               console.debug(`metrics/compute/${login}/plugins > steam > fetching player achievements "${game.name}" (${game.id})`)
               const { data: { playerstats: { achievements: list = [] } } } = await imports.axios.get(`${urls.player.achievement}&appid=${game.id}`)
-              achievements = await Promise.all(list.map(async ({ apiname: id, achieved, unlocktime: unlocked, name, description }) => ({ icon: await imports.imgb64(schema[id]?.icon ?? null, { width: 32, height: 32 }), achieved: !!achieved, unlocked, name, description, id })))
+              achievements = await Promise.all(list.map(async ({ apiname: id, achieved, unlocktime: unlocked, name, description }) => ({ icon: await imports.imgb64(schema[id]?.icon ?? null, { width: 32, height: 32 }), achieved: Boolean(achieved), unlocked, name, description, id })))
               achievements = achievements.sort((a, b) => (b.unlocked - a.unlocked))
               rate.achieved = achievements.filter(({ achieved }) => achieved).length
               achievements = achievements.slice(0, _achievements_limit)

@@ -108,7 +108,7 @@ export default async function ({ login, q }, { conf, data, rest, graphql, plugin
 
   computed.registered = { years: years + days / 365.25, months }
   computed.registration = years ? `${years} year${imports.s(years)} ago` : months ? `${months} month${imports.s(months)} ago` : `${days} day${imports.s(days)} ago`
-  computed.cakeday = !!((years >= 1 && months === 0 && days === 0))
+  computed.cakeday = Boolean(years >= 1 && months === 0 && days === 0)
 
   // Compute calendar
   computed.calendar = data.user.calendar.contributionCalendar.weeks.flatMap(({ contributionDays }) => contributionDays).slice(-14)

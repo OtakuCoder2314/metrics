@@ -267,6 +267,6 @@ const legacy = {
   converter (value) {
     if (/^(?:[Tt]rue|[Oo]n|[Yy]es|1)$/.test(value)) { return true }
     if (/^(?:[Ff]alse|[Oo]ff|[Nn]o|0)$/.test(value)) { return false }
-    if (Number.isFinite(Number(value))) { return !!(Number(value)) }
+    if (Number.isFinite(Number(value))) { return Boolean(Number(value)) }
   }
 }
