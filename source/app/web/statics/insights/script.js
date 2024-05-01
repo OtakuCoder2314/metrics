@@ -84,7 +84,7 @@
             return value
               .replace(
                 RegExp(baseUrl + String.raw`(?:issues|pull|discussions)\/(\d+)(?:\?[\w-]+)?(#[\w-]+)?(?=<)`, "g"),
-                (_, repo, id, comment) => (options?.repo === repo ? "" : repo) + `#${id}` + (comment ? ` (comment)` : ""),
+                (_, repo, id, comment) => (options?.repo === repo ? "" : repo) + `#${id}` + (comment ? " (comment)" : ""),
               ) // -> 'lowlighter/metrics#123'
               .replace(
                 RegExp(baseUrl + String.raw`commit\/([\da-f]+)(?=<)`, "g"),

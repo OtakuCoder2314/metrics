@@ -14,7 +14,7 @@ if (agreement !== "y")
 //Generate token
 console.log([
   "",
-  bgWhite(black(`0. Follow the instructions below to generate a new token`)),
+  bgWhite(black("0. Follow the instructions below to generate a new token")),
   "",
 ].join("\n"))
 const allowed = {

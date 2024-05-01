@@ -4482,7 +4482,7 @@ function globToRegExp(glob, { extended =true , globstar: globstarOption = true ,
             }
             if (inRange) {
                 if (glob[i] == "\\") {
-                    segment += `\\\\`;
+                    segment += "\\\\";
                 } else {
                     segment += glob[i];
                 }
@@ -4751,9 +4751,9 @@ class MultiProgressBar {
         let index = this.#startIndex;
         for (const { completed , total =100 , text ="" , ...options } of bars){
             if (completed < 0) {
-                throw new Error(`completed must greater than or equal to 0`);
+                throw new Error("completed must greater than or equal to 0");
             }
-            if (!Number.isInteger(total)) throw new Error(`total must be 'number'`);
+            if (!Number.isInteger(total)) throw new Error("total must be 'number'");
             if (completed > total && this.#strs[index] != undefined) continue;
             end = false;
             const percent = (completed / total * 100).toFixed(2) + "%";
@@ -4855,7 +4855,7 @@ class ProgressBar {
     render(completed, options = {}) {
         if (this.isCompleted || !isTTY1) return;
         if (completed < 0) {
-            throw new Error(`completed must greater than or equal to 0`);
+            throw new Error("completed must greater than or equal to 0");
         }
         const total = options.total ?? this.total ?? 100;
         const now = Date.now();
@@ -6076,7 +6076,7 @@ class StatInkExporter {
         }
         const startedAt = Math.floor(new Date(playedTime).getTime() / 1000);
         if (otherTeams.length === 0) {
-            throw new Error(`Other teams is empty`);
+            throw new Error("Other teams is empty");
         }
         const result = {
             uuid: await gameId(vsDetail.id),
