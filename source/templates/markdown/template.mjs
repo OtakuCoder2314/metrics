@@ -1,11 +1,11 @@
-/**Template processor */
-export default async function(_, {data}, {imports}) {
-  //Core
+/** Template processor */
+export default async function (_, { data }, { imports }) {
+  // Core
   await imports.plugins.core(...arguments)
-  //Aliases
-  const {user, computed, plugins} = data
+  // Aliases
+  const { user, computed, plugins } = data
   Object.assign(data, {
-    //Base
+    // Base
     NAME: user.name,
     LOGIN: user.login,
     REGISTRATION_DATE: user.createdAt,
@@ -35,19 +35,19 @@ export default async function(_, {data}, {imports}) {
     FORKS: computed.repositories.forks,
     RELEASES: computed.repositories.releases,
     VERSION: data.meta.version,
-    //Lines
+    // Lines
     LINES_ADDED: plugins.lines?.added ?? 0,
     LINES_DELETED: plugins.lines?.deleted ?? 0,
-    //Gists
+    // Gists
     GISTS: plugins.gists?.totalCount ?? 0,
     GISTS_STARGAZERS: plugins.gists?.stargazers ?? 0,
-    //Languages
-    LANGUAGES: plugins.languages?.favorites?.map(({name, value, size, color}) => ({name, value, size, color})) ?? [],
-    //Posts
+    // Languages
+    LANGUAGES: plugins.languages?.favorites?.map(({ name, value, size, color }) => ({ name, value, size, color })) ?? [],
+    // Posts
     POSTS: plugins.posts?.list ?? [],
-    //Tweets
+    // Tweets
     TWEETS: plugins.tweets?.list ?? [],
-    //Topics
-    TOPICS: plugins.topics?.list ?? [],
+    // Topics
+    TOPICS: plugins.topics?.list ?? []
   })
 }

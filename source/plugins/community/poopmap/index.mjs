@@ -1,16 +1,14 @@
-//Setup
-export default async function({q, imports, data, account}, {enabled = false, token = "", extras = false} = {}) {
-  //Plugin execution
+// Setup
+export default async function ({ q, imports, data, account }, { enabled = false, token = '', extras = false } = {}) {
+  // Plugin execution
   try {
-    //Check if plugin is enabled and requirements are met
-    if ((!q.poopmap) || (!imports.metadata.plugins.poopmap.enabled(enabled, {extras})))
-      return null
+    // Check if plugin is enabled and requirements are met
+    if ((!q.poopmap) || (!imports.metadata.plugins.poopmap.enabled(enabled, { extras }))) { return null }
 
-    if (!token)
-      return {poops: [], days: 7}
+    if (!token) { return { poops: [], days: 7 } }
 
-    const {days} = imports.metadata.plugins.poopmap.inputs({data, account, q})
-    const {data: {poops}} = await imports.axios.get(`https://api.poopmap.net/api/v1/public_links/${token}`)
+    const { days } = imports.metadata.plugins.poopmap.inputs({ data, account, q })
+    const { data: { poops } } = await imports.axios.get(`https://api.poopmap.net/api/v1/public_links/${token}`)
 
     const filteredPoops = poops.filter(poop => {
       const createdAt = new Date(poop.created_at)
@@ -18,7 +16,7 @@ export default async function({q, imports, data, account}, {enabled = false, tok
       return createdAt > new Date().getTime() - days * 24 * 60 * 60 * 1000
     })
 
-    const hours = {max: 0}
+    const hours = { max: 0 }
     for (let i = 0; i < filteredPoops.length; i++) {
       const poop = filteredPoops[i]
       const hour = new Date(poop.created_at).getHours()
@@ -27,10 +25,10 @@ export default async function({q, imports, data, account}, {enabled = false, tok
       hours.max = Math.max(hours[hour], hours.max)
     }
 
-    //Results
-    return {poops: hours, days}
+    // Results
+    return { poops: hours, days }
   }
-  //Handle errors
+  // Handle errors
   catch (error) {
     throw imports.format.error(error)
   }
