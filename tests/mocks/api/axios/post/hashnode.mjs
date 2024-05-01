@@ -1,5 +1,5 @@
-/**Mocked data */
-export default function({faker, url, body, login = faker.internet.userName()}) {
+/** Mocked data */
+export default function ({ faker, url, body, login = faker.internet.userName() }) {
   if (/^https:..api.hashnode.com.*$/.test(url)) {
     console.debug(`metrics/compute/mocks > mocking hashnode result > ${url}`)
     return ({
@@ -12,12 +12,12 @@ export default function({faker, url, body, login = faker.internet.userName()}) {
                 title: faker.lorem.sentence(),
                 brief: faker.lorem.paragraph(),
                 coverImage: null,
-                dateAdded: faker.date.recent(),
-              })),
-            },
-          },
-        },
-      },
+                dateAdded: faker.date.recent()
+              }))
+            }
+          }
+        }
+      }
     })
   }
 }

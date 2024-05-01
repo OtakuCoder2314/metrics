@@ -1,8 +1,8 @@
-/**Mocked data */
-export default function({faker, url, options, login = faker.internet.userName()}) {
-  //Wakatime api
+/** Mocked data */
+export default function ({ faker, url, options, login = faker.internet.userName() }) {
+  // Wakatime api
   if (/^https:..api.poopmap.net.*$/.test(url)) {
-    //Get user profile
+    // Get user profile
     if (/public_links\/MOCKED_TOKEN/.test(url)) {
       console.debug(`metrics/compute/mocks > mocking poopmap api result > ${url}`)
       return ({
@@ -13,13 +13,13 @@ export default function({faker, url, options, login = faker.internet.userName()}
             latitude: faker.location.latitude(),
             longitude: faker.location.longitude(),
             created_at: faker.date.past().toISOString(),
-            note: "",
-            place: "",
+            note: '',
+            place: '',
             rating: faker.number.int(5),
             followers_count: faker.number.int(100),
-            comments_count: faker.number.int(12),
-          })),
-        },
+            comments_count: faker.number.int(12)
+          }))
+        }
       })
     }
   }

@@ -1,9 +1,9 @@
-/**Mocked data */
-export default function({faker, url, options, login = faker.internet.userName()}) {
-  //Spotify api
+/** Mocked data */
+export default function ({ faker, url, options, login = faker.internet.userName() }) {
+  // Spotify api
   if (/^https:..api.spotify.com.*$/.test(url)) {
-    //Get recently played tracks
-    if (/me.player.recently-played/.test(url) && (options?.headers?.Authorization === "Bearer MOCKED_TOKEN_ACCESS")) {
+    // Get recently played tracks
+    if (/me.player.recently-played/.test(url) && (options?.headers?.Authorization === 'Bearer MOCKED_TOKEN_ACCESS')) {
       console.debug(`metrics/compute/mocks > mocking spotify api result > ${url}`)
       const artist = faker.lorem.words()
       const track = faker.lorem.words(5)
@@ -14,54 +14,53 @@ export default function({faker, url, options, login = faker.internet.userName()}
             {
               track: {
                 album: {
-                  album_type: "single",
+                  album_type: 'single',
                   artists: [
                     {
                       name: artist,
-                      type: "artist",
-                    },
+                      type: 'artist'
+                    }
                   ],
                   images: [
                     {
                       height: 640,
-                      url: faker.image.urlLoremFlickr({category: "abstract"}),
-                      width: 640,
+                      url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                      width: 640
                     },
                     {
                       height: 300,
-                      url: faker.image.urlLoremFlickr({category: "abstract"}),
-                      width: 300,
+                      url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                      width: 300
                     },
                     {
                       height: 64,
-                      url: faker.image.urlLoremFlickr({category: "abstract"}),
-                      width: 64,
-                    },
+                      url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                      width: 64
+                    }
                   ],
                   name: track,
                   release_date: `${faker.date.past()}`.substring(0, 10),
-                  type: "album",
+                  type: 'album'
                 },
                 artists: [
                   {
                     name: artist,
-                    type: "artist",
-                  },
+                    type: 'artist'
+                  }
                 ],
                 name: track,
                 preview_url: faker.internet.url(),
-                type: "track",
+                type: 'track'
               },
               played_at: `${faker.date.recent()}`,
               context: {
-                type: "album",
-              },
-            },
-          ],
-        },
+                type: 'album'
+              }
+            }
+          ]
+        }
       })
-    }
-    else if (/me.top.tracks/.test(url) && (options?.headers?.Authorization === "Bearer MOCKED_TOKEN_ACCESS")) {
+    } else if (/me.top.tracks/.test(url) && (options?.headers?.Authorization === 'Bearer MOCKED_TOKEN_ACCESS')) {
       console.debug(`metrics/compute/mocks > mocking spotify api result > ${url}`)
       const artist = faker.lorem.words()
       const track = faker.lorem.words(5)
@@ -71,49 +70,48 @@ export default function({faker, url, options, login = faker.internet.userName()}
           items: [
             {
               album: {
-                album_type: "single",
+                album_type: 'single',
                 artists: [
                   {
                     name: artist,
-                    type: "artist",
-                  },
+                    type: 'artist'
+                  }
                 ],
                 images: [
                   {
                     height: 640,
-                    url: faker.image.urlLoremFlickr({category: "abstract"}),
-                    width: 640,
+                    url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                    width: 640
                   },
                   {
                     height: 300,
-                    url: faker.image.urlLoremFlickr({category: "abstract"}),
-                    width: 300,
+                    url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                    width: 300
                   },
                   {
                     height: 64,
-                    url: faker.image.urlLoremFlickr({category: "abstract"}),
-                    width: 64,
-                  },
+                    url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                    width: 64
+                  }
                 ],
                 name: track,
                 release_date: `${faker.date.past()}`.substring(0, 10),
-                type: "album",
+                type: 'album'
               },
               artists: [
                 {
                   name: artist,
-                  type: "artist",
-                },
+                  type: 'artist'
+                }
               ],
               name: track,
               preview_url: faker.internet.url(),
-              type: "track",
-            },
-          ],
-        },
+              type: 'track'
+            }
+          ]
+        }
       })
-    }
-    else if (/me.top.artists/.test(url) && (options?.headers?.Authorization === "Bearer MOCKED_TOKEN_ACCESS")) {
+    } else if (/me.top.artists/.test(url) && (options?.headers?.Authorization === 'Bearer MOCKED_TOKEN_ACCESS')) {
       console.debug(`metrics/compute/mocks > mocking spotify api result > ${url}`)
       const genre = faker.lorem.words()
       const track = faker.lorem.words(5)
@@ -126,25 +124,25 @@ export default function({faker, url, options, login = faker.internet.userName()}
               images: [
                 {
                   height: 640,
-                  url: faker.image.urlLoremFlickr({category: "abstract"}),
-                  width: 640,
+                  url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                  width: 640
                 },
                 {
                   height: 300,
-                  url: faker.image.urlLoremFlickr({category: "abstract"}),
-                  width: 300,
+                  url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                  width: 300
                 },
                 {
                   height: 64,
-                  url: faker.image.urlLoremFlickr({category: "abstract"}),
-                  width: 64,
-                },
+                  url: faker.image.urlLoremFlickr({ category: 'abstract' }),
+                  width: 64
+                }
               ],
               name: track,
-              type: "artist",
-            },
-          ],
-        },
+              type: 'artist'
+            }
+          ]
+        }
       })
     }
   }

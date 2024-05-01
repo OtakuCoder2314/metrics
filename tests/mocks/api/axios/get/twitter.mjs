@@ -1,26 +1,26 @@
-/**Mocked data */
-export default function({faker, url, options, login = faker.internet.userName()}) {
-  //Twitter api
+/** Mocked data */
+export default function ({ faker, url, options, login = faker.internet.userName() }) {
+  // Twitter api
   if (/^https:..api.twitter.com.*$/.test(url)) {
-    //Get user profile
-    if ((/users.by.username/.test(url)) && (options?.headers?.Authorization === "Bearer MOCKED_TOKEN")) {
+    // Get user profile
+    if ((/users.by.username/.test(url)) && (options?.headers?.Authorization === 'Bearer MOCKED_TOKEN')) {
       console.debug(`metrics/compute/mocks > mocking twitter api result > ${url}`)
       const username = url.match(/username[/](?<username>.*?)[?]/)?.groups?.username ?? faker.internet.userName()
       return ({
         status: 200,
         data: {
           data: {
-            profile_image_url: faker.image.urlLoremFlickr({category: "people"}),
+            profile_image_url: faker.image.urlLoremFlickr({ category: 'people' }),
             name: faker.person.fullName(),
             verified: faker.datatype.boolean(),
             id: faker.number.int(1000000).toString(),
-            username,
-          },
-        },
+            username
+          }
+        }
       })
     }
-    //Get recent tweets
-    if ((/tweets.search.recent/.test(url)) && (options?.headers?.Authorization === "Bearer MOCKED_TOKEN")) {
+    // Get recent tweets
+    if ((/tweets.search.recent/.test(url)) && (options?.headers?.Authorization === 'Bearer MOCKED_TOKEN')) {
       console.debug(`metrics/compute/mocks > mocking twitter api result > ${url}`)
       return ({
         status: 200,
@@ -31,33 +31,33 @@ export default function({faker, url, options, login = faker.internet.userName()}
               created_at: `${faker.date.recent()}`,
               entities: {
                 mentions: [
-                  {start: 22, end: 33, username: "lowlighter"},
-                ],
+                  { start: 22, end: 33, username: 'lowlighter' }
+                ]
               },
-              text: "Checkout metrics from @lowlighter ! #GitHub",
+              text: 'Checkout metrics from @lowlighter ! #GitHub'
             },
             {
               id: faker.number.int(100000000000000).toString(),
               created_at: `${faker.date.recent()}`,
-              text: faker.lorem.paragraph(),
-            },
+              text: faker.lorem.paragraph()
+            }
           ],
           includes: {
             users: [
               {
                 id: faker.number.int(100000000000000).toString(),
-                name: "lowlighter",
-                username: "lowlighter",
-              },
-            ],
+                name: 'lowlighter',
+                username: 'lowlighter'
+              }
+            ]
           },
           meta: {
             newest_id: faker.number.int(100000000000000).toString(),
             oldest_id: faker.number.int(100000000000000).toString(),
             result_count: 2,
-            next_token: "MOCKED_CURSOR",
-          },
-        },
+            next_token: 'MOCKED_CURSOR'
+          }
+        }
       })
     }
   }

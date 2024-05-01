@@ -1,6 +1,6 @@
-/**Mocked data */
-export default function({faker, query, login = faker.internet.userName()}) {
-  console.debug("metrics/compute/mocks > mocking graphql api result > sponsors/default")
+/** Mocked data */
+export default function ({ faker, query, login = faker.internet.userName() }) {
+  console.debug('metrics/compute/mocks > mocking graphql api result > sponsors/default')
   return ({
     user: {
       sponsorsListing: {
@@ -8,9 +8,9 @@ export default function({faker, query, login = faker.internet.userName()}) {
         activeGoal: {
           percentComplete: faker.number.int(100),
           title: faker.lorem.sentence(),
-          description: faker.lorem.sentence(),
-        },
-      },
-    },
+          description: faker.lorem.sentence()
+        }
+      }
+    }
   })
 }

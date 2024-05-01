@@ -1,7 +1,7 @@
-/**Mocked data */
-export default function({faker, url, options, login = faker.internet.userName()}) {
+/** Mocked data */
+export default function ({ faker, url, options, login = faker.internet.userName() }) {
   if (/^https:..music.youtube.com.youtubei.v1.*$/.test(url)) {
-    //Get recently played tracks
+    // Get recently played tracks
     if (/browse/.test(url)) {
       console.debug(`metrics/compute/mocks > mocking yt music api result > ${url}`)
       const artist = faker.lorem.word()
@@ -21,37 +21,37 @@ export default function({faker, url, options, login = faker.internet.userName()}
                             musicThumbnailRenderer: {
                               thumbnail: {
                                 thumbnails: [{
-                                  url: artwork,
-                                }],
-                              },
-                            },
+                                  url: artwork
+                                }]
+                              }
+                            }
                           },
                           flexColumns: [{
                             musicResponsiveListItemFlexColumnRenderer: {
                               text: {
                                 runs: [{
-                                  text: track,
-                                }],
-                              },
-                            },
+                                  text: track
+                                }]
+                              }
+                            }
                           }, {
                             musicResponsiveListItemFlexColumnRenderer: {
                               text: {
                                 runs: [{
-                                  text: artist,
-                                }],
-                              },
-                            },
-                          }],
-                        },
-                      }],
-                    }],
-                  },
-                },
-              },
-            }],
-          },
-        },
+                                  text: artist
+                                }]
+                              }
+                            }
+                          }]
+                        }
+                      }]
+                    }]
+                  }
+                }
+              }
+            }]
+          }
+        }
       })
     }
   }
