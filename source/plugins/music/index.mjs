@@ -249,7 +249,7 @@ export default async function ({ login, imports, data, q, account }, { enabled =
             // Prepare credentials
             const date = new Date().getTime()
             const [, cookie] = token.split('; ').find(part => part.startsWith('SAPISID=')).split('=')
-            const sha1 = str => crypto.createHash("sha256").update(str).digest('hex')
+            const sha1 = str => crypto.createHash('sha256').update(str).digest('hex')
             const SAPISIDHASH = `SAPISIDHASH ${date}_${sha1(`${date} ${cookie} https://music.youtube.com`)}`
             // API call and parse tracklist
             try {
