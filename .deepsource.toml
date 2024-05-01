@@ -22,10 +22,14 @@ name = "test-coverage"
 name = "javascript"
 
   [analyzers.meta]
-  plugins = ["react"]
+  plugins = [
+    "react",
+    "angular"
+  ]
   environment = [
     "nodejs",
-    "mongo"
+    "mongo",
+    "jquery"
   ]
 
 [[transformers]]
@@ -42,3 +46,6 @@ name = "clang-format"
 
 [[transformers]]
 name = "standardjs"
+
+[[transformers]]
+name = "prettier"
